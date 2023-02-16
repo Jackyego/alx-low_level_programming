@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * Return 0 : means that the program will execute successfully and did what it was intended to do
+ * Return 0 : means that the program will execute successfully 
  */
 
 int main(void)
