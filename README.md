@@ -1,1 +1,1 @@
-This repo holds all my projects in c programming language
+This project is about functions and nested lood
