@@ -1,30 +1,36 @@
 #include "jackyego.h"
 
-/* Declaring a file pointer and a character */
-int main(void)
+/**
+ * read_textfile - reads a text file and prints the letters
+ * @filename: filename.
+ * @letters: numbers of letters printed.
+ *
+ * Return: numbers of letters printed. It fails, returns 0.
+ */
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *fp;
-	char ch;
-	/* Now we need to Open the file in read mode */
-	fp = fopen("yegosfile.txt", "r");
+	int fd;
+	ssize_t nrd, nwr;
+	char *buf;
 
-/*
-* on successfully opening the file,read the file character by character
-* and close the file, if it falis to open
-* print an error message "failed to open"
-*/
-	if (fp != NULL)
-	{
-		while ((ch = fgetc(fp)) != EOF)
-		{
-			putchar(ch);
-		}
-		fclose(fp);
-	}
-	else
-	{
-		printf("Error: Failed to open the file.\n");
-	}
-	return (0);
+	if (!filename)
+		return (0);
+
+	fd = open(filename, O_RDONLY);
+
+	if (fd == -1)
+		return (0);
+
+	buf = malloc(sizeof(char) * (letters));
+	if (!buf)
+		return (0);
+
+	nrd = read(fd, buf, letters);
+	nwr = write(STDOUT_FILENO, buf, nrd);
+
+	close(fd);
+
+	free(buf);
+
+	return (nwr);
 }
-
