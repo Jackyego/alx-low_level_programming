@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "jackyego.c"
 
 /* Declaring a file pointer and a character */
 int main(void)
